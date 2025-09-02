@@ -25,22 +25,22 @@ jobs:
           name: Run tests
           command: pytest -v
 
-docker-build:
-  docker:
-    - image: cimg/base:stable   # Base image with Docker installed
-  steps:
-    - setup_remote_docker       # removed "version"
-    - checkout
-    - run:
-        name: Build Docker image
-        command: docker build -t myapp:latest .
-    - run:
-        name: Save Docker image as artifact
-        command: docker save myapp:latest | gzip > myapp.tar.gz
-    - persist_to_workspace:
-        root: .
-        paths:
-          - myapp.tar.gz
+    docker-build:
+      docker:
+        - image: cimg/base:stable   # Base image with Docker installed
+      steps:
+        - setup_remote_docker       # removed "version"
+        - checkout
+        - run:
+            name: Build Docker image
+            command: docker build -t myapp:latest .
+        - run:
+            name: Save Docker image as artifact
+            command: docker save myapp:latest | gzip > myapp.tar.gz
+        - persist_to_workspace:
+            root: .
+            paths:
+              - myapp.tar.gz
 
 workflows:
   version: 2
