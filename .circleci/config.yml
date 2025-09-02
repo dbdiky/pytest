@@ -20,7 +20,7 @@ jobs:
       - checkout
       - run:
           name: Install linter
-          command: pip install flake8
+          command: pip install -r requirements.txt
       - run:
           name: Run flake8
           command: flake8 .
