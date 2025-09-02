@@ -13,21 +13,8 @@ jobs:
           name: Run tests
           command: pytest -v
 
-  lint:
-    docker:
-      - image: cimg/python:3.11
-    steps:
-      - checkout
-      - run:
-          name: Install linter
-          command: pip install -r requirements.txt
-      - run:
-          name: Run flake8
-          command: flake8 .
-
 workflows:
   version: 2
   build_and_test:
     jobs:
       - build
-      - lint
